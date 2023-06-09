@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C72B80C52A335F8800B0525E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C72B80C42A335F8800B0525E /* Lottie */; };
+		C72B80C82A335FED00B0525E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C72B80C72A335FED00B0525E /* Alamofire */; };
+		C72B80CB2A33642700B0525E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C72B80CA2A33642700B0525E /* Kingfisher */; };
+		C72B80CE2A336C4900B0525E /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72B80CD2A336C4900B0525E /* LottieView.swift */; };
+		C72B80D12A336CFB00B0525E /* noInternetConnection.json in Resources */ = {isa = PBXBuildFile; fileRef = C72B80D02A336CFB00B0525E /* noInternetConnection.json */; };
+		C72B80D32A336DDB00B0525E /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = C72B80D22A336DDB00B0525E /* splash.json */; };
 		C72FB5102A3348A3005963D2 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB50F2A3348A3005963D2 /* HomeScreenView.swift */; };
 		C72FB5122A3348B4005963D2 /* HomeScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB5112A3348B4005963D2 /* HomeScreenVM.swift */; };
 		C72FB5152A3348DB005963D2 /* DetailsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB5142A3348DB005963D2 /* DetailsScreenView.swift */; };
 		C72FB5192A334AC5005963D2 /* BaseRespository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB5182A334AC5005963D2 /* BaseRespository.swift */; };
 		C72FB51C2A334AF6005963D2 /* getProductFromServerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB51B2A334AF6005963D2 /* getProductFromServerUseCase.swift */; };
 		C72FB51E2A334B25005963D2 /* getProductFromLocalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB51D2A334B25005963D2 /* getProductFromLocalUseCase.swift */; };
+		C72FB5232A334C84005963D2 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB5222A334C84005963D2 /* ProductModel.swift */; };
+		C72FB5262A3352BE005963D2 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB5252A3352BE005963D2 /* NoInternetView.swift */; };
 		C7672E782A3252A100A3AA6F /* Product_ViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7672E772A3252A100A3AA6F /* Product_ViewerApp.swift */; };
 		C7672E7A2A3252A100A3AA6F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7672E792A3252A100A3AA6F /* Persistence.swift */; };
 		C7672E7D2A3252A100A3AA6F /* Product_Viewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C7672E7B2A3252A100A3AA6F /* Product_Viewer.xcdatamodeld */; };
@@ -42,12 +50,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C72B80CD2A336C4900B0525E /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		C72B80D02A336CFB00B0525E /* noInternetConnection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noInternetConnection.json; sourceTree = "<group>"; };
+		C72B80D22A336DDB00B0525E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		C72FB50F2A3348A3005963D2 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		C72FB5112A3348B4005963D2 /* HomeScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVM.swift; sourceTree = "<group>"; };
 		C72FB5142A3348DB005963D2 /* DetailsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreenView.swift; sourceTree = "<group>"; };
 		C72FB5182A334AC5005963D2 /* BaseRespository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRespository.swift; sourceTree = "<group>"; };
 		C72FB51B2A334AF6005963D2 /* getProductFromServerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getProductFromServerUseCase.swift; sourceTree = "<group>"; };
 		C72FB51D2A334B25005963D2 /* getProductFromLocalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getProductFromLocalUseCase.swift; sourceTree = "<group>"; };
+		C72FB5222A334C84005963D2 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		C72FB5252A3352BE005963D2 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		C7672E742A3252A100A3AA6F /* Product_Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Product_Viewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7672E772A3252A100A3AA6F /* Product_ViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product_ViewerApp.swift; sourceTree = "<group>"; };
 		C7672E792A3252A100A3AA6F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -68,6 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72B80CB2A33642700B0525E /* Kingfisher in Frameworks */,
+				C72B80C52A335F8800B0525E /* Lottie in Frameworks */,
+				C72B80C82A335FED00B0525E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +104,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C72B80CC2A336C3300B0525E /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				C72B80CD2A336C4900B0525E /* LottieView.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		C72B80CF2A336CEB00B0525E /* LottieFiles */ = {
+			isa = PBXGroup;
+			children = (
+				C72B80D22A336DDB00B0525E /* splash.json */,
+				C72B80D02A336CFB00B0525E /* noInternetConnection.json */,
+			);
+			path = LottieFiles;
+			sourceTree = "<group>";
+		};
 		C72FB50B2A33485B005963D2 /* DomainLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +134,9 @@
 		C72FB50C2A334866005963D2 /* PresenationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				C72B80CF2A336CEB00B0525E /* LottieFiles */,
+				C72B80CC2A336C3300B0525E /* UIComponents */,
+				C72FB5242A3352A7005963D2 /* NoInternetScreen */,
 				C72FB5132A3348C1005963D2 /* DetailsScreen */,
 				C72FB50E2A334881005963D2 /* HomeScreen */,
 			);
@@ -161,6 +197,7 @@
 		C72FB51F2A334BAD005963D2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C72FB5222A334C84005963D2 /* ProductModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,6 +205,8 @@
 		C72FB5202A334BC1005963D2 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
+				C72FB5282A335476005963D2 /* LocalDataSource */,
+				C72FB5272A33543B005963D2 /* RemoteDataSource */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -177,6 +216,28 @@
 			children = (
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		C72FB5242A3352A7005963D2 /* NoInternetScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C72FB5252A3352BE005963D2 /* NoInternetView.swift */,
+			);
+			path = NoInternetScreen;
+			sourceTree = "<group>";
+		};
+		C72FB5272A33543B005963D2 /* RemoteDataSource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RemoteDataSource;
+			sourceTree = "<group>";
+		};
+		C72FB5282A335476005963D2 /* LocalDataSource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocalDataSource;
 			sourceTree = "<group>";
 		};
 		C7672E6B2A3252A100A3AA6F = {
@@ -257,6 +318,11 @@
 			dependencies = (
 			);
 			name = Product_Viewer;
+			packageProductDependencies = (
+				C72B80C42A335F8800B0525E /* Lottie */,
+				C72B80C72A335FED00B0525E /* Alamofire */,
+				C72B80CA2A33642700B0525E /* Kingfisher */,
+			);
 			productName = Product_Viewer;
 			productReference = C7672E742A3252A100A3AA6F /* Product_Viewer.app */;
 			productType = "com.apple.product-type.application";
@@ -329,6 +395,11 @@
 				Base,
 			);
 			mainGroup = C7672E6B2A3252A100A3AA6F;
+			packageReferences = (
+				C72B80C32A335F8800B0525E /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				C72B80C62A335FED00B0525E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C72B80C92A33642700B0525E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = C7672E752A3252A100A3AA6F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -345,7 +416,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72B80D12A336CFB00B0525E /* noInternetConnection.json in Resources */,
 				C7672E852A3252A400A3AA6F /* Preview Assets.xcassets in Resources */,
+				C72B80D32A336DDB00B0525E /* splash.json in Resources */,
 				C7672E812A3252A400A3AA6F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +451,9 @@
 				C7672E7D2A3252A100A3AA6F /* Product_Viewer.xcdatamodeld in Sources */,
 				C72FB5102A3348A3005963D2 /* HomeScreenView.swift in Sources */,
 				C7672E7F2A3252A100A3AA6F /* ContentView.swift in Sources */,
+				C72FB5232A334C84005963D2 /* ProductModel.swift in Sources */,
+				C72B80CE2A336C4900B0525E /* LottieView.swift in Sources */,
+				C72FB5262A3352BE005963D2 /* NoInternetView.swift in Sources */,
 				C7672E7A2A3252A100A3AA6F /* Persistence.swift in Sources */,
 				C72FB5192A334AC5005963D2 /* BaseRespository.swift in Sources */,
 				C72FB5152A3348DB005963D2 /* DetailsScreenView.swift in Sources */,
@@ -724,6 +800,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C72B80C32A335F8800B0525E /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		C72B80C62A335FED00B0525E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C72B80C92A33642700B0525E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C72B80C42A335F8800B0525E /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C72B80C32A335F8800B0525E /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+		C72B80C72A335FED00B0525E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C72B80C62A335FED00B0525E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		C72B80CA2A33642700B0525E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C72B80C92A33642700B0525E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C7672E7B2A3252A100A3AA6F /* Product_Viewer.xcdatamodeld */ = {
