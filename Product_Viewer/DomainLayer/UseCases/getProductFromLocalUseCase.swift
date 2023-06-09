@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+
+class GetProductLocally   {
+    
+    
+    //instance from repositiory
+    var baseRepository : BaseRepository
+    
+    init(baseRepository: BaseRepository) {
+        self.baseRepository = baseRepository
+    }
+    
+    func getData() {
+        baseRepository.fetchProducts()
+    }
+    
+    
+    
+}

@@ -7,7 +7,9 @@
 
 import Foundation
 
-// MARK: - WelcomeElement
+struct AllProducts : Codable {
+    let result : [ProductViewer]
+}
 struct ProductViewer: Codable {
     let product: Product?
     let productMerchants: [ProductMerchantElement]?
@@ -16,39 +18,27 @@ struct ProductViewer: Codable {
         case product
         case productMerchants
     }
-
-    init(product: Product?, productMerchants: [ProductMerchantElement]?) {
-        self.product = product
-        self.productMerchants = productMerchants
-    }
 }
 
 // MARK: - Product
 struct Product: Codable {
     let id, name, description, price: String?
-    let unitPrice, productTypeID: JSONNull?
     let imageURL: String?
-    let shoppingListItemID, shoppingCartItemID: JSONNull?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, description, price
-        case unitPrice
-        case productTypeID
-        case imageURL
-        case shoppingListItemID
-        case shoppingCartItemID
+        case id = "id"
+        case name = "name"
+        case description = "description"
+        case price = "price"
+        case imageURL = "image_url"
     }
 
-    init(id: String?, name: String?, description: String?, price: String?, unitPrice: JSONNull?, productTypeID: JSONNull?, imageURL: String?, shoppingListItemID: JSONNull?, shoppingCartItemID: JSONNull?) {
+    init(id: String?, name: String?, description: String?, price: String?,  imageURL: String?) {
         self.id = id
         self.name = name
         self.description = description
         self.price = price
-        self.unitPrice = unitPrice
-        self.productTypeID = productTypeID
         self.imageURL = imageURL
-        self.shoppingListItemID = shoppingListItemID
-        self.shoppingCartItemID = shoppingCartItemID
     }
 }
 

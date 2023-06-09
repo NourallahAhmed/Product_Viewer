@@ -6,3 +6,14 @@
 //
 
 import Foundation
+class HomeViewModel : ObservableObject {
+    
+    var baseRepository : BaseRepository
+    
+    init(baseRepository: BaseRepository) {
+        self.baseRepository = baseRepository
+        
+        
+        self.baseRepository.fetchProducts()
+    }
+}
