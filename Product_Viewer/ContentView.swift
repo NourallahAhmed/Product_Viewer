@@ -15,18 +15,47 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
-
+    @State var orientation = UIDevice.current.orientation
+    
+    let orientationChanged = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+        .makeConnectable()
+        .autoconnect()
+    
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
+                    NavigationLink   {
+                        VStack{
+                            if orientation.isLandscape {
+                                VStack{
+                                    Spacer()
+                                    Text("LANDSCAPE")
+                                    Spacer()
+                                }
+
+                            } else {
+                                VStack{
+                                    Spacer()
+                                    HStack{
+                                        Image(systemName: "house")
+                                        Text("PORTRAIT")
+                                        Image(systemName: "house")
+                                    }
+                                    Spacer()
+                                }
+                                
+                            }
+                        }
+                    }
+                     label: {
                         Text(item.timestamp!, formatter: itemFormatter)
+                        Text(orientation.isLandscape.description)
                     }
                 }
                 .onDelete(perform: deleteItems)
+            } .onReceive(orientationChanged) { _ in
+                self.orientation = UIDevice.current.orientation
             }
             .toolbar {
 #if os(iOS)
