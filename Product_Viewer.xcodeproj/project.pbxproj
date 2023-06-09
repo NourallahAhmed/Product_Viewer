@@ -13,6 +13,8 @@
 		C72B80CE2A336C4900B0525E /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72B80CD2A336C4900B0525E /* LottieView.swift */; };
 		C72B80D12A336CFB00B0525E /* noInternetConnection.json in Resources */ = {isa = PBXBuildFile; fileRef = C72B80D02A336CFB00B0525E /* noInternetConnection.json */; };
 		C72B80D32A336DDB00B0525E /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = C72B80D22A336DDB00B0525E /* splash.json */; };
+		C72B80D52A33744A00B0525E /* PortraitModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72B80D42A33744A00B0525E /* PortraitModeView.swift */; };
+		C72B80D92A33750200B0525E /* LandscapeModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72B80D82A33750200B0525E /* LandscapeModeView.swift */; };
 		C72FB5102A3348A3005963D2 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB50F2A3348A3005963D2 /* HomeScreenView.swift */; };
 		C72FB5122A3348B4005963D2 /* HomeScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB5112A3348B4005963D2 /* HomeScreenVM.swift */; };
 		C72FB5152A3348DB005963D2 /* DetailsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FB5142A3348DB005963D2 /* DetailsScreenView.swift */; };
@@ -53,6 +55,8 @@
 		C72B80CD2A336C4900B0525E /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		C72B80D02A336CFB00B0525E /* noInternetConnection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noInternetConnection.json; sourceTree = "<group>"; };
 		C72B80D22A336DDB00B0525E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
+		C72B80D42A33744A00B0525E /* PortraitModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortraitModeView.swift; sourceTree = "<group>"; };
+		C72B80D82A33750200B0525E /* LandscapeModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeModeView.swift; sourceTree = "<group>"; };
 		C72FB50F2A3348A3005963D2 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		C72FB5112A3348B4005963D2 /* HomeScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVM.swift; sourceTree = "<group>"; };
 		C72FB5142A3348DB005963D2 /* DetailsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreenView.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				C72B80CD2A336C4900B0525E /* LottieView.swift */,
+				C72B80D42A33744A00B0525E /* PortraitModeView.swift */,
+				C72B80D82A33750200B0525E /* LandscapeModeView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -450,11 +456,13 @@
 				C72FB51C2A334AF6005963D2 /* getProductFromServerUseCase.swift in Sources */,
 				C7672E7D2A3252A100A3AA6F /* Product_Viewer.xcdatamodeld in Sources */,
 				C72FB5102A3348A3005963D2 /* HomeScreenView.swift in Sources */,
+				C72B80D52A33744A00B0525E /* PortraitModeView.swift in Sources */,
 				C7672E7F2A3252A100A3AA6F /* ContentView.swift in Sources */,
 				C72FB5232A334C84005963D2 /* ProductModel.swift in Sources */,
 				C72B80CE2A336C4900B0525E /* LottieView.swift in Sources */,
 				C72FB5262A3352BE005963D2 /* NoInternetView.swift in Sources */,
 				C7672E7A2A3252A100A3AA6F /* Persistence.swift in Sources */,
+				C72B80D92A33750200B0525E /* LandscapeModeView.swift in Sources */,
 				C72FB5192A334AC5005963D2 /* BaseRespository.swift in Sources */,
 				C72FB5152A3348DB005963D2 /* DetailsScreenView.swift in Sources */,
 			);

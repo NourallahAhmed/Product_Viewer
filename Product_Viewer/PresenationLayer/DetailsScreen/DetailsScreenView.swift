@@ -8,8 +8,29 @@
 import SwiftUI
 
 struct DetailsScreenView: View {
+    @State var orientation = UIDevice.current.orientation
+    
+    let orientationChanged = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+        .makeConnectable()
+        .autoconnect()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            if orientation.isLandscape {
+                LandscapeModeView()
+            }
+            else{
+                PortraitModeView()
+            }
+            
+        }.onAppear{
+            self.orientation = UIDevice.current.orientation
+
+        }
+        .onReceive(orientationChanged) { _ in
+            self.orientation = UIDevice.current.orientation
+            
+            
+        }
     }
 }
 

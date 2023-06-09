@@ -22,7 +22,6 @@ struct ContentView: View {
                         .navigationBarHidden(true),
                     isActive: $navigateToNextView) {
                     }
-                
             }
         }
         .onAppear{

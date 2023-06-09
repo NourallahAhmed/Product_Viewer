@@ -10,104 +10,57 @@ import CoreData
 
 struct HomeScreenView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
-    @State var orientation = UIDevice.current.orientation
+ 
+    let data = (1...100).map { "Item \($0)" }
     
-    let orientationChanged = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
-        .makeConnectable()
-        .autoconnect()
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+    ]
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink   {
+        NavigationView{
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(data, id: \.self) { item in
+                    NavigationLink(destination: DetailsScreenView()) {
                         VStack{
-                            if orientation.isLandscape {
-                                VStack{
-                                    Spacer()
-                                    Text("LANDSCAPE")
-                                    Spacer()
-                                }
-
-                            } else {
-                                VStack{
-                                    Spacer()
-                                    HStack{
-                                        Image(systemName: "house")
-                                        Text("PORTRAIT")
-                                        Image(systemName: "house")
-                                    }
-                                    Spacer()
-                                }
-                                
-                            }
+                            Image(systemName: "house")
+                                .foregroundColor(.blue)
+                                .frame(height: 200)
+                            HStack{
+                                Text("product \(item)")
+                                    .lineLimit(1)
+                                    .font(.system(size: 20))
+                                    .minimumScaleFactor(0.5)
+                                Text("390 LE")
+                                    .font(.system(size: 10))
+                            }.padding(.bottom)
+                            Text("Traps & Locks Dust & Allergens* Swiffer Dusters Refills trap and lock dust and allergens* with thousands of fluffy fibers. That s because each fluffy, flexible fiber features Dust Lock Adhesive that traps and locks dust away for good. The unique fluffy fibers can also change shape to get into nooks and crannies and dust virtually any surface for a great clean. Swiffer Duster Handle sold separately.  <br />\n 1,000s of fluffy fibers <br />\n Easy-to-replace Dusters refill <br />\n Dust Lock Adhesive traps and locks dust <br />\n")
+                                .lineLimit(2)
+                                .font(.system(size: 10))
                         }
-                    }
-                     label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                        Text(orientation.isLandscape.description)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            } .onReceive(orientationChanged) { _ in
-                self.orientation = UIDevice.current.orientation
-            }
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                        .frame(height: 300)
+                        .padding()
+                        .background(Color.gray.opacity(0.10))
+                        .cornerRadius(20)
                     }
                 }
             }
-            Text("Select an item")
+            .padding(.horizontal)
         }
+        
     }
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+        
     }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+    
+   
 }
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
+
 
 struct HomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
