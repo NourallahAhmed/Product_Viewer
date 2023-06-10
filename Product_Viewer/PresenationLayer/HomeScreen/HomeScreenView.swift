@@ -31,7 +31,7 @@ struct HomeScreenView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 10) {
                 ForEach(viewModel.products ) { item in
-                    NavigationLink(destination: DetailsScreenView()) {
+                    NavigationLink(destination: DetailsScreenView(product: item.product)) {
                         VStack{
                             KFImage.url(URL(string : item.product.imageURL ?? "" ))
                                 .placeholder{
@@ -44,7 +44,7 @@ struct HomeScreenView: View {
                                 }
                                 .cacheMemoryOnly()
                                 .resizable()
-//                                .scaledToFit()
+                                .scaledToFit()
                                 .cornerRadius(10)
                                 .padding([.horizontal, .top], 7)
                                 .frame(width: 100, height: 150)
@@ -62,12 +62,17 @@ struct HomeScreenView: View {
                                         .foregroundColor(.black)
                                         .font(.system(size: 10))
                                 }.padding(.bottom , 5)
-                                
-                            Text(item.product.description ?? "")
-                                    .lineLimit(2)
-                                    .foregroundColor(.gray.opacity(100))
-                                    .font(.system(size: 12))
-                                    .multilineTextAlignment(.leading)
+                            item.product.description?
+                                .applyHTMLTags()
+                                .lineLimit(2)
+                                .foregroundColor(.gray.opacity(100))
+                                .font(.system(size: 12))
+                                .multilineTextAlignment(.leading)
+//                            Text(item.product.description ?? "")
+//                                    .lineLimit(2)
+//                                    .foregroundColor(.gray.opacity(100))
+//                                    .font(.system(size: 12))
+//                                    .multilineTextAlignment(.leading)
 //                            Spacer()
                          
                         }

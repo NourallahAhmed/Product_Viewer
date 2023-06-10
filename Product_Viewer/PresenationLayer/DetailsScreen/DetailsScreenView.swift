@@ -13,13 +13,16 @@ struct DetailsScreenView: View {
     let orientationChanged = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
         .makeConnectable()
         .autoconnect()
+    
+    var product : Product
+    
     var body: some View {
         ZStack{
             if orientation.isLandscape {
-                LandscapeModeView()
+                LandscapeModeView(product: product)
             }
             else{
-                PortraitModeView()
+                PortraitModeView(product: product)
             }
             
         }.onAppear{
@@ -36,6 +39,6 @@ struct DetailsScreenView: View {
 
 struct DetailsScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsScreenView()
+        DetailsScreenView(product: Product(id: "", name: "", description: "", price: "", imageURL: ""))
     }
 }
