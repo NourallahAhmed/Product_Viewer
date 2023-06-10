@@ -20,7 +20,8 @@ protocol storeLocallyProtocol {
 
 class RemoteDataSource   : BaseAPI<NetworkRequest> ,fetchFromServerProtocol {
     func fetchAllProducts(completion: @escaping (Result<[ProductViewer]?, NSError>) -> Void) {
-        self.fetchData(target: .getProducts, responseClass: [ProductViewer].self) { (result) in            
+        self.fetchData(target: .getProducts, responseClass: [ProductViewer].self) { (result) in
+
             completion(result)
         }
     }

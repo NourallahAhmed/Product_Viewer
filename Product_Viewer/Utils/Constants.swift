@@ -8,6 +8,7 @@
 import Foundation
 struct Constants{
     static let baseURL = "http://www.nweave.com"
+    static let DefaultImage = "https://odoo-community.org/web/image/product.product/19823/image_1024/Default%20Product%20Images?unique=0399780"
 }
 
 struct ErrorMessages {

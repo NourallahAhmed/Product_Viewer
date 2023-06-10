@@ -19,7 +19,7 @@ class GetProductLocally   {
     }
     
     func getData() {
-        baseRepository.fetchProducts()
+//        baseRepository.fetchProducts(completionHandeler: <#([ProductViewer]) -> Void#>)
     }
     
     

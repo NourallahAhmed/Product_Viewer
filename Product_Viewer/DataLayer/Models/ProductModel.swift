@@ -10,18 +10,29 @@ import Foundation
 struct AllProducts : Codable {
     let result : [ProductViewer]
 }
-struct ProductViewer: Codable {
-    let product: Product?
-    let productMerchants: [ProductMerchantElement]?
+struct ProductViewer: Codable , Identifiable , Hashable , Equatable{
+    var id = UUID()
+    let product: Product
+    let productMerchants: [ProductMerchantElement]
 
     enum CodingKeys: String, CodingKey {
-        case product
-        case productMerchants
+//        case id
+        case product = "Product"
+        case productMerchants = "ProductMerchants"
     }
+    static func == (lhs: ProductViewer, rhs: ProductViewer) -> Bool {
+        return lhs.product == rhs.product && lhs.productMerchants == rhs.productMerchants
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(product)
+        hasher.combine(productMerchants)
+    }
+
 }
 
 // MARK: - Product
-struct Product: Codable {
+struct Product: Codable , Hashable {
     let id, name, description, price: String?
     let imageURL: String?
 
@@ -43,15 +54,17 @@ struct Product: Codable {
 }
 
 // MARK: - ProductMerchantElement
-struct ProductMerchantElement: Codable {
+struct ProductMerchantElement: Codable , Identifiable, Hashable  {
+    var id = UUID()
+    
     let merchant: Merchant?
     let merchantProduct: MerchantProduct?
     let productMerchant: ProductMerchantProductMerchant?
 
     enum CodingKeys: String, CodingKey {
-        case merchant
-        case merchantProduct
-        case productMerchant
+        case merchant = "Merchant"
+        case merchantProduct = "MerchantProduct"
+        case productMerchant = "ProductMerchant"
     }
 
     init(merchant: Merchant?, merchantProduct: MerchantProduct?, productMerchant: ProductMerchantProductMerchant?) {
@@ -59,20 +72,29 @@ struct ProductMerchantElement: Codable {
         self.merchantProduct = merchantProduct
         self.productMerchant = productMerchant
     }
+    static func == (lhs: ProductMerchantElement, rhs: ProductMerchantElement) -> Bool {
+        return lhs.merchant == rhs.merchant && lhs.merchantProduct == rhs.merchantProduct
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(merchant)
+        hasher.combine(merchantProduct)
+    }
 }
 
 // MARK: - Merchant
-struct Merchant: Codable {
+struct Merchant: Codable ,  Identifiable, Hashable {
     let id, name: String?
 
     init(id: String?, name: String?) {
         self.id = id
         self.name = name
     }
+    
+    
 }
 
 // MARK: - MerchantProduct
-struct MerchantProduct: Codable {
+struct MerchantProduct: Codable  ,  Identifiable, Hashable {
     let id, price, upc, sku: String?
     let buyURL: String?
     let discountPercent: String?
@@ -80,9 +102,9 @@ struct MerchantProduct: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id, price, upc, sku
-        case buyURL
-        case discountPercent
-        case unitPrice
+        case buyURL = "buy_url"
+        case discountPercent = "discount_percent"
+        case unitPrice = "unit_price"
     }
 
     init(id: String?, price: String?, upc: String?, sku: String?, buyURL: String?, discountPercent: String?, unitPrice: JSONNull?) {
@@ -103,9 +125,9 @@ struct ProductMerchantProductMerchant: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case productID
+        case productID = "product_id"
         case upc, sku, created, modified
-        case multipleProductsPerPage
+        case multipleProductsPerPage = "multiple_products_per_page"
     }
 
     init(id: String?, productID: String?, upc: String?, sku: String?, created: String?, modified: String?, multipleProductsPerPage: String?) {

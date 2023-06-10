@@ -18,7 +18,7 @@ class BaseAPI<T: TargetType> {
         AF.request(target.baseURL + target.path, method: method, parameters: params.0, encoding: params.1)
             .validate()
             .responseDecodable(of: responseClass) { (response) in
-                print(response.debugDescription)
+//                print(response.debugDescription)
                 
                 
                 guard let statusCode = response.response?.statusCode else {
@@ -35,8 +35,8 @@ class BaseAPI<T: TargetType> {
 //                    print("\(target.baseURL)+\(target.path)")
                     guard let response = try? response.result.get() else {
                         // Add custom error
-                        print(response)
-                        print("Error while getting response")
+//                        print(response)
+//                        print("Error while getting response")
                         
                         let error = NSError(domain: target.baseURL, code: 0, userInfo: [NSLocalizedDescriptionKey: ErrorMessages.genericError])
                         completion(.failure(error))

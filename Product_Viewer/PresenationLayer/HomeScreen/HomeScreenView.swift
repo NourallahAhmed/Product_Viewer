@@ -21,7 +21,6 @@ struct HomeScreenView: View {
     
     @StateObject var viewModel : HomeViewModel
 
-    let data = (1...100).map { "Item \($0)" }
     
     let columns = [
         GridItem(),
@@ -31,29 +30,40 @@ struct HomeScreenView: View {
         NavigationView{
         ScrollView {
             LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(data, id: \.self) { item in
+                ForEach(viewModel.products ) { item in
                     NavigationLink(destination: DetailsScreenView()) {
                         VStack{
-                            KFImage.url(URL(string:"http://pics1.ds-static.com/prodimg/193587/300.JPG"))
-                                .frame(
-                                    width: 50 ,height: 200)
-                                .scaledToFit()
-                                .padding()
-//                                .placeholder(UIImage(named: "placeholder-image"))
-                                Spacer()
+                            KFImage.url(URL(string : item.product.imageURL ?? "" ))
+                                .placeholder{
+                                    KFImage.url(URL(string :  Constants.DefaultImage )).cacheMemoryOnly()
+                                        .resizable()
+                                        .scaledToFit()
+                                        .cornerRadius(20)
+                                        .padding([.horizontal, .top], 7)
+                                        .frame(width: 100, height: 150)
+                                }
+                                .cacheMemoryOnly()
+                                .resizable()
+//                                .scaledToFit()
+                                .cornerRadius(10)
+                                .padding([.horizontal, .top], 7)
+                                .frame(width: 100, height: 150)
+                                
+
+//                                Spacer()
                                 HStack{
-                                    Text("product 3\(item)")
+                                    Text(item.product.name ?? "")
                                         .foregroundColor(.black)
                                         .bold()
-                                        .lineLimit(1)
+                                        .lineLimit(0)
                                         .font(.system(size: 20))
                                         .minimumScaleFactor(0.5)
-                                    Text("390 LE")
+                                    Text(item.product.price ?? "")
                                         .foregroundColor(.black)
                                         .font(.system(size: 10))
                                 }.padding(.bottom , 5)
                                 
-                                Text("Traps & Locks Dust & Allergens* Swiffer Dusters Refills trap and lock dust and allergens* with thousands of fluffy fibers. That s because each fluffy, flexible fiber features Dust Lock Adhesive that traps and locks dust away for good. The unique fluffy fibers can also change shape to get into nooks and crannies and dust virtually any surface for a great clean. Swiffer Duster Handle sold separately.  <br />\n 1,000s of fluffy fibers <br />\n Easy-to-replace Dusters refill <br />\n Dust Lock Adhesive traps and locks dust <br />\n")
+                            Text(item.product.description ?? "")
                                     .lineLimit(2)
                                     .foregroundColor(.gray.opacity(100))
                                     .font(.system(size: 12))
@@ -61,7 +71,7 @@ struct HomeScreenView: View {
 //                            Spacer()
                          
                         }
-                        .frame(height: 350)
+                        .frame(height: 250)
                         .padding()
                         .background(Color.gray.opacity(0.10))
                         .cornerRadius(20)
