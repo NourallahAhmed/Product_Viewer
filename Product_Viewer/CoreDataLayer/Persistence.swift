@@ -9,22 +9,8 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-        }
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
         return result
     }()
 
@@ -52,5 +38,39 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+
+    func fetchItems() -> [LocalProducts] {
+        let request = NSFetchRequest<LocalProducts>(entityName: "LocalProducts")
+        do {
+            let items = try PersistenceController.shared.container.viewContext.fetch(request)
+            return items
+        } catch {
+            print("Error fetching items from CoreData: \(error)")
+            return []
+        }
+    }
+    
+     func saveData(products : [ProductViewer]){
+        let viewContext = PersistenceController.preview.container.viewContext
+        products.map { productViewer in
+            let newItem = LocalProducts(context: viewContext)
+            newItem.name = productViewer.product.name ?? ""
+            newItem.image_URL = productViewer.product.imageURL ?? ""
+            newItem.discriptions = productViewer.product.description ?? ""
+            newItem.price = productViewer.product.price ?? ""
+            
+            
+            do {
+                try viewContext.save()
+                print("Saved")
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+            
+        }
     }
 }

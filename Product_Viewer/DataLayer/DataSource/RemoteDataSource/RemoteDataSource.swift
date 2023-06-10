@@ -12,16 +12,19 @@ protocol fetchFromServerProtocol {
 }
 
 protocol storeLocallyProtocol {
-    func storeProductLocaly()
+    func storeProductLocaly(products: [ProductViewer])
 }
-
-
 
 
 class RemoteDataSource   : BaseAPI<NetworkRequest> ,fetchFromServerProtocol {
     func fetchAllProducts(completion: @escaping (Result<[ProductViewer]?, NSError>) -> Void) {
         self.fetchData(target: .getProducts, responseClass: [ProductViewer].self) { (result) in
-
+            
+            //Store new data into CoreData
+            var products = try? result.get()
+            self.storeProductLocaly(products:  products ?? [])
+            
+            //Send data to view
             completion(result)
         }
     }
@@ -33,8 +36,9 @@ class RemoteDataSource   : BaseAPI<NetworkRequest> ,fetchFromServerProtocol {
 
 
 extension RemoteDataSource : storeLocallyProtocol {
-    func storeProductLocaly() {
+    func storeProductLocaly(products:[ProductViewer]) {
         //after get data store it in coredata
+        PersistenceController.shared.saveData(products: products)
     }
     
     

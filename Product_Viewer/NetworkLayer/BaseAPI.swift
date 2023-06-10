@@ -12,15 +12,13 @@ class BaseAPI<T: TargetType> {
     
     func fetchData<M: Decodable>(target: T, responseClass: M.Type, completion: @escaping (Result<M?, NSError>) -> Void) {
         let method = Alamofire.HTTPMethod(rawValue: target.method.rawValue)
-        let headers = Alamofire.HTTPHeaders(target.headers ?? [:])
         let params = buildParams(task: target.task)
         
         AF.request(target.baseURL + target.path, method: method, parameters: params.0, encoding: params.1)
             .validate()
             .responseDecodable(of: responseClass) { (response) in
-//                print(response.debugDescription)
                 
-                
+            
                 guard let statusCode = response.response?.statusCode else {
                     // Add custom error
                     print("Can't get status code")
@@ -30,13 +28,9 @@ class BaseAPI<T: TargetType> {
                 }
                 
                 if statusCode == 200 {
-//                     successful request
-//                    print("---------url --------------")
-//                    print("\(target.baseURL)+\(target.path)")
+
                     guard let response = try? response.result.get() else {
-                        // Add custom error
-//                        print(response)
-//                        print("Error while getting response")
+
                         
                         let error = NSError(domain: target.baseURL, code: 0, userInfo: [NSLocalizedDescriptionKey: ErrorMessages.genericError])
                         completion(.failure(error))
@@ -59,7 +53,6 @@ class BaseAPI<T: TargetType> {
             }
     }
 
-    
     
     private func buildParams(task: Task) -> ([String: Any], ParameterEncoding){
         

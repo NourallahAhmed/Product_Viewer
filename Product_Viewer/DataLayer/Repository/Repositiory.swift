@@ -33,9 +33,10 @@ class Repository : BaseRepository {
 
                 })
             }else{
-                print("No result")
                 // else locally
-                //        localDataSource.getAllProducts()
+                self?.localDataSource.getAllProducts { products in
+                    print(products.count)
+                }
             }
             
            

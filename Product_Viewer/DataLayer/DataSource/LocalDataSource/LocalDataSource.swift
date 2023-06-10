@@ -6,15 +6,20 @@
 //
 
 import Foundation
-/*
-    dealing with CoreData
- 
- */
+
+
+
+
 protocol getFromLocalProtocol{
-   func getAllProducts()
+    func getAllProducts(completionHandler : @escaping (([LocalProducts]) -> Void))
 }
 
 class LocalDataSource  : getFromLocalProtocol {
-    func getAllProducts() {
+
+    func getAllProducts(completionHandler: @escaping (([LocalProducts]) -> Void)) {
+        let localProducts =   PersistenceController.shared.fetchItems()
+        completionHandler(localProducts)
     }
+    
+    
 }

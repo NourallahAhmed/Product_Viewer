@@ -8,14 +8,14 @@
 import Foundation
 class HomeViewModel : ObservableObject {
     
-    var baseRepository : BaseRepository
+    var getProductsUseCase : GetProductUseCase
+    
     @Published var products : [ProductViewer] = []
-    init(baseRepository: BaseRepository) {
-        self.baseRepository = baseRepository
-        
-        
-        self.baseRepository.fetchProducts { result in
-            self.products = result
+    
+    init(getProductsUseCase: GetProductUseCase) {
+        self.getProductsUseCase = getProductsUseCase
+        self.getProductsUseCase.getData { products in
+            self.products = products
         }
     }
 }

@@ -8,18 +8,19 @@
 import Foundation
 
 
-class GetProductLocally   {
+class GetProductUseCase   {
     
     
     //instance from repositiory
     var baseRepository : BaseRepository
-    
     init(baseRepository: BaseRepository) {
         self.baseRepository = baseRepository
     }
     
-    func getData() {
-//        baseRepository.fetchProducts(completionHandeler: <#([ProductViewer]) -> Void#>)
+    func getData(completionHandler: @escaping ([ProductViewer]) -> Void) {
+        baseRepository.fetchProducts { products in
+            completionHandler(products)
+        }
     }
     
     

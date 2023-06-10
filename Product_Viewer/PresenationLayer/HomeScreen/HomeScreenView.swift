@@ -10,21 +10,12 @@ import CoreData
 import Kingfisher
 
 struct HomeScreenView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
 
-    
-    
     @StateObject var viewModel : HomeViewModel
 
-    
     let columns = [
-        GridItem(),
-        GridItem(),
+    GridItem(),
+    GridItem(),
     ]
     var body: some View {
         NavigationView{
@@ -48,9 +39,7 @@ struct HomeScreenView: View {
                                 .cornerRadius(10)
                                 .padding([.horizontal, .top], 7)
                                 .frame(width: 100, height: 150)
-                                
 
-//                                Spacer()
                                 HStack{
                                     Text(item.product.name ?? "")
                                         .foregroundColor(.black)
@@ -86,7 +75,8 @@ struct HomeScreenView: View {
             .padding(.horizontal)
         }
         
-    }
+        }
+     
         
     }
     
@@ -100,9 +90,10 @@ struct HomeScreenView_Previews: PreviewProvider {
         var remoteDataSource = RemoteDataSource()
         var localDataSource = LocalDataSource()
         var baseRepo = Repository(localDataSource: localDataSource, remoteDataSource: remoteDataSource)
-        var homeViewModel = HomeViewModel(baseRepository: baseRepo)
+        var useCase = GetProductUseCase(baseRepository: baseRepo)
+        var homeViewModel = HomeViewModel(getProductsUseCase: useCase)
         
         
-        HomeScreenView(viewModel: homeViewModel).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        HomeScreenView(viewModel: homeViewModel)
     }
 }

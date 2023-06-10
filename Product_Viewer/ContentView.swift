@@ -17,9 +17,13 @@ struct ContentView: View {
 //    var localDataSource = LocalDataSource()
 //    var baseRepo = Repository(localDataSource:  LocalDataSource() , remoteDataSource: RemoteDataSource())
     var homeViewModel = HomeViewModel(
-        baseRepository: Repository(
-                            localDataSource: LocalDataSource() ,
-                            remoteDataSource: RemoteDataSource()))
+        getProductsUseCase:
+            GetProductUseCase(
+                baseRepository:
+                    Repository(
+                        localDataSource: LocalDataSource() ,
+                        remoteDataSource: RemoteDataSource()))
+            )
     
     var body: some View {
         NavigationView{
@@ -49,6 +53,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
