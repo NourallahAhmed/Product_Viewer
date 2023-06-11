@@ -20,12 +20,11 @@ struct PortraitModeView: View {
             Spacer()
             KFImage.url(URL(string :  product.imageURL ?? "" ))
                 .placeholder{
-                    KFImage.url(URL(string :  Constants.DefaultImage )).cacheMemoryOnly()
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(20)
-                        .padding([.horizontal, .top], 7)
-                        .frame(width: 100, height: 150)
+                        Image("Default_Product_Images")
+                            .resizable()
+                            .cornerRadius(20)
+                            .padding([.horizontal, .top], 7)
+                            .frame(width: 100, height: 100)
                 }
                 .cacheMemoryOnly()
                 .resizable()

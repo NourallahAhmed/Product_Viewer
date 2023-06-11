@@ -23,12 +23,11 @@ struct LandscapeModeView: View {
                     Spacer()
                     KFImage.url(URL(string : product.imageURL ?? "" ))
                         .placeholder{
-                            KFImage.url(URL(string :  Constants.DefaultImage )).cacheMemoryOnly()
+                            Image("Default_Product_Images")
                                 .resizable()
-                                .scaledToFit()
                                 .cornerRadius(20)
                                 .padding([.horizontal, .top], 7)
-                                .frame(width: 100, height: 150)
+                                .frame(width: 100, height: 100)
                         }
                         .cacheMemoryOnly()
                         .resizable()

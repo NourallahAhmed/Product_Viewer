@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 import Lottie
 
-struct ContentView: View {
+struct SplashScreen: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @State private var navigateToNextView = false
@@ -53,6 +53,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+        SplashScreen()
+            //.environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }

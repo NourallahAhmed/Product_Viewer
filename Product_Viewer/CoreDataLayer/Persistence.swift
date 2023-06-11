@@ -11,6 +11,15 @@ struct PersistenceController {
     static let shared = PersistenceController()
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
+        let viewContext = result.container.viewContext
+        do {
+            try viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
         return result
     }()
 
@@ -51,15 +60,18 @@ struct PersistenceController {
         }
     }
     
-     func saveData(products : [ProductViewer]){
+    func saveData(products : [ProductViewer]){
         let viewContext = PersistenceController.preview.container.viewContext
-        products.map { productViewer in
+      
+        for productViewer in products{
+            print("products = \(productViewer.product.id)")
             let newItem = LocalProducts(context: viewContext)
+            newItem.id = productViewer.product.id ?? ""
             newItem.name = productViewer.product.name ?? ""
             newItem.image_URL = productViewer.product.imageURL ?? ""
             newItem.discriptions = productViewer.product.description ?? ""
             newItem.price = productViewer.product.price ?? ""
-            
+        
             
             do {
                 try viewContext.save()
@@ -71,6 +83,20 @@ struct PersistenceController {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
             
+            
         }
+        
+    }
+    func clearLocalData(){
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LocalProducts")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+            do {
+                try PersistenceController.preview.container.viewContext.execute(deleteRequest)
+                try  PersistenceController.preview.container.viewContext.save()
+            } catch {
+                print("Error deleting data: \(error)")
+            }
+        
     }
 }

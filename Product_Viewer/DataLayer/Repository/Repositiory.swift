@@ -22,20 +22,24 @@ class Repository : BaseRepository {
         self.remoteDataSource = remoteDataSource
     }
     
-    func fetchProducts(completionHandeler :  @escaping ([ProductViewer]) -> Void) {        
+    func fetchProducts(completionHandeler :  @escaping ([Product]) -> Void) {
         monitor.pathUpdateHandler = { [weak self] pathUpdateHandler  in
             if pathUpdateHandler.status == .satisfied {
                 // if internetConnectionEnabled fetch from remote
                 self?.remoteDataSource.fetchAllProducts(completion: { result in
                     let result = try? result.get()
-                    
-                    completionHandeler(result ?? [])
+                    let remoteProducts = result?.map{$0.product}
+
+                    completionHandeler(remoteProducts ?? [])
 
                 })
             }else{
                 // else locally
                 self?.localDataSource.getAllProducts { products in
-                    print(products.count)
+                    
+                    let localProducts = products.map{$0.toProducts()}
+                    print("localProducts = \(localProducts)")
+                    completionHandeler(localProducts ?? [])
                 }
             }
             

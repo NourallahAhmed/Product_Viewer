@@ -18,6 +18,7 @@ class LocalDataSource  : getFromLocalProtocol {
 
     func getAllProducts(completionHandler: @escaping (([LocalProducts]) -> Void)) {
         let localProducts =   PersistenceController.shared.fetchItems()
+        
         completionHandler(localProducts)
     }
     

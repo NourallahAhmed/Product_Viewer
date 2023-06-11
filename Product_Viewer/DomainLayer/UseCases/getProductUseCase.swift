@@ -17,7 +17,7 @@ class GetProductUseCase   {
         self.baseRepository = baseRepository
     }
     
-    func getData(completionHandler: @escaping ([ProductViewer]) -> Void) {
+    func getData(completionHandler: @escaping ([Product]) -> Void) {
         baseRepository.fetchProducts { products in
             completionHandler(products)
         }

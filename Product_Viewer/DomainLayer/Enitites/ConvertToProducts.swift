@@ -9,7 +9,10 @@ import Foundation
 
 extension LocalProducts {
     func toProducts() -> Product{
-        return Product(id: "" ,
+        
+        print("ID = \(self.id)")
+        print("ID = \(self.name)")
+        return Product(id: UUID().description ,
                        name: self.name,
                        description: self.discriptions,
                        price: self.price,

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol BaseRepository{
-    func fetchProducts(completionHandeler : @escaping ([ProductViewer]) -> Void)
+    func fetchProducts(completionHandeler : @escaping ([Product]) -> Void)
 }

@@ -10,7 +10,7 @@ class HomeViewModel : ObservableObject {
     
     var getProductsUseCase : GetProductUseCase
     
-    @Published var products : [ProductViewer] = []
+    @Published var products : [Product] = []
     
     init(getProductsUseCase: GetProductUseCase) {
         self.getProductsUseCase = getProductsUseCase

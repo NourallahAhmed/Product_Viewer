@@ -32,7 +32,7 @@ struct ProductViewer: Codable , Identifiable , Hashable , Equatable{
 }
 
 // MARK: - Product
-struct Product: Codable , Hashable {
+struct Product: Codable , Identifiable , Hashable , Equatable {
     let id, name, description, price: String?
     let imageURL: String?
 
@@ -50,6 +50,15 @@ struct Product: Codable , Hashable {
         self.description = description
         self.price = price
         self.imageURL = imageURL
+    }
+    
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        return lhs.description == rhs.description && lhs.name == rhs.name
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(description)
+        hasher.combine(name)
     }
 }
 
