@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C71979AA2A36899800F5F4A5 /* noData.json in Resources */ = {isa = PBXBuildFile; fileRef = C71979A92A36899800F5F4A5 /* noData.json */; };
+		C71979AD2A368C0200F5F4A5 /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = C71979AC2A368C0200F5F4A5 /* Loading.json */; };
 		C72397FF2A3526E40042B0C7 /* ConvertToProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72397FE2A3526E40042B0C7 /* ConvertToProducts.swift */; };
 		C72B80C52A335F8800B0525E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C72B80C42A335F8800B0525E /* Lottie */; };
 		C72B80C82A335FED00B0525E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C72B80C72A335FED00B0525E /* Alamofire */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		C71979A92A36899800F5F4A5 /* noData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noData.json; sourceTree = "<group>"; };
+		C71979AC2A368C0200F5F4A5 /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
 		C72397FE2A3526E40042B0C7 /* ConvertToProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToProducts.swift; sourceTree = "<group>"; };
 		C72B80CD2A336C4900B0525E /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		C72B80D02A336CFB00B0525E /* noInternetConnection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noInternetConnection.json; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		C72B80CF2A336CEB00B0525E /* LottieFiles */ = {
 			isa = PBXGroup;
 			children = (
+				C71979AC2A368C0200F5F4A5 /* Loading.json */,
 				C71979A92A36899800F5F4A5 /* noData.json */,
 				C72B80D22A336DDB00B0525E /* splash.json */,
 				C72B80D02A336CFB00B0525E /* noInternetConnection.json */,
@@ -485,6 +488,7 @@
 			files = (
 				C72B80D12A336CFB00B0525E /* noInternetConnection.json in Resources */,
 				C71979AA2A36899800F5F4A5 /* noData.json in Resources */,
+				C71979AD2A368C0200F5F4A5 /* Loading.json in Resources */,
 				C7672E852A3252A400A3AA6F /* Preview Assets.xcassets in Resources */,
 				C72B80D32A336DDB00B0525E /* splash.json in Resources */,
 				C7672E812A3252A400A3AA6F /* Assets.xcassets in Resources */,

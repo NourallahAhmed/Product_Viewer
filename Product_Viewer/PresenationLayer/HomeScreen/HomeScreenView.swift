@@ -49,13 +49,13 @@ struct HomeScreenView: View {
                                     HStack{
                                         Text(item.name ?? "")
                                             .foregroundColor(.black)
-                                            .bold()
-                                            .lineLimit(0)
-                                            .font(.system(size: 20))
+                                        //                                            .bold()
+                                        //                                            .lineLimit(1)
+                                            .font(.system(size: 15))
                                             .minimumScaleFactor(0.5)
-                                        Text(item.price ?? "")
+                                        Text("\(item.price ?? "" ) L.E" )
                                             .foregroundColor(.black)
-                                            .font(.system(size: 10))
+                                            .font(.system(size: 12))
                                     }.padding(.bottom , 5)
                                     item.description?
                                         .applyHTMLTags()
@@ -82,11 +82,17 @@ struct HomeScreenView: View {
                 }
                 
             }
-            
             else{
                 //if first time and no data stored in DB
-                LottieView(filename: "noData" , loopMode: .loop)
+                if viewModel.loading {
+                    LottieView(filename: "Loading" , loopMode: .loop)
+                    
+                }else{
+                    LottieView(filename: "noData" , loopMode: .loop)
+                }
+                
             }
+            
         }
         
     }
