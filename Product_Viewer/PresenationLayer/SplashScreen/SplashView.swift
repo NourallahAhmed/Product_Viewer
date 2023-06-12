@@ -13,9 +13,7 @@ struct SplashScreen: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @State private var navigateToNextView = false
-//    var remoteDataSource = RemoteDataSource()
-//    var localDataSource = LocalDataSource()
-//    var baseRepo = Repository(localDataSource:  LocalDataSource() , remoteDataSource: RemoteDataSource())
+
     var homeViewModel = HomeViewModel(
         getProductsUseCase:
             GetProductUseCase(

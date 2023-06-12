@@ -8,10 +8,9 @@
 import Foundation
 
 import Network
-enum Result<T, U> {
-    case success(T)
-    case failure(U)
-}
+
+
+
 class Repository : BaseRepository {
     
     var localDataSource : getFromLocalProtocol
@@ -30,9 +29,7 @@ class Repository : BaseRepository {
             if pathUpdateHandler.status == .satisfied {
                 // if internetConnectionEnabled fetch from remote
                 self?.remoteDataSource.fetchAllProducts(completion: { result in
-                    
-                    
-                    
+
                     switch result {
                     case .success(let productViewer):
                         let remoteProducts = productViewer?.map{$0.product}
@@ -42,8 +39,6 @@ class Repository : BaseRepository {
                         completionHandeler(.failure(error.localizedDescription))
         
                     }
-                  
-                    
                 })
             }else{
                 // else locally

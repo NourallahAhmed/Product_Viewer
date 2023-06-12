@@ -13,6 +13,7 @@ class GetProductUseCase   {
     
     //instance from repositiory
     var baseRepository : BaseRepository
+
     init(baseRepository: BaseRepository) {
         self.baseRepository = baseRepository
     }
@@ -22,7 +23,6 @@ class GetProductUseCase   {
             
             switch products {
             case .success(let products):
-                print("GetProductUseCase = \(products)")
                 completionHandler(.success(products))
             case .failure(let error):
                 completionHandler(.failure(error))

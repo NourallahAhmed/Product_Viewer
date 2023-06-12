@@ -56,8 +56,7 @@ extension RemoteDataSource : storeLocallyProtocol {
         PersistenceController.shared.saveData(products: products)
         
         // to disable the nointernet lottie to be viewed and view data from DB
-        UserDefaults.standard.set(false, forKey: "isFirstTime")
-      
+        UserDefaults.standard.set(false, forKey: "isEnterAppBefore")
         
     }
     

@@ -10,70 +10,71 @@ import CoreData
 import Kingfisher
 
 struct HomeScreenView: View {
-//
-//    @FetchRequest(
-//        sortDescriptors: [],
-//        animation: .default)
-//    private var items: FetchedResults<LocalProducts>
+
     
     @StateObject var viewModel : HomeViewModel
 
-    let columns = [
-    GridItem(),
-    GridItem(),
-    ]
+    let columns = [ GridItem(), GridItem()]
     var body: some View {
         NavigationView{
             
             if viewModel.products.isEmpty == false {
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(viewModel.products ) { item in
-                            NavigationLink(destination: DetailsScreenView(product: item)) {
-                                VStack{
-                                    KFImage.url(URL(string : item.imageURL?.description ?? "" ))
-                                        .placeholder{
-                                            Image("Default_Product_Images")
-                                                .resizable()
-                                                .cornerRadius(20)
-                                                .padding([.horizontal, .top], 7)
-                                                .frame(width: 100, height: 100)
-                                        }
-                                        .cacheMemoryOnly()
-                                        .resizable()
-                                        .scaledToFit()
-                                        .cornerRadius(10)
-                                        .padding([.horizontal, .top], 7)
-                                        .frame(width: 100, height: 100)
-                                    
-                                    HStack{
-                                        Text(item.name ?? "")
-                                            .foregroundColor(.black)
-                                            .font(.system(size: 15))
-                                            .minimumScaleFactor(0.5)
-                                        Text("\(item.price ?? "" ) L.E" )
-                                            .foregroundColor(.black)
+                VStack{
+                    if viewModel.isInternetConnectionEnabled  == false {
+                        VStack{
+                            Text("No Internet Connection").foregroundColor(.red)
+                        }.frame(height: 20)
+                    }
+                    
+                    ScrollView {
+                        
+                        LazyVGrid(columns: columns, spacing: 10) {
+                            ForEach(viewModel.products ) { item in
+                                NavigationLink(destination: DetailsScreenView(product: item)) {
+                                    VStack{
+                                        KFImage.url(URL(string : item.imageURL?.description ?? "" ))
+                                            .placeholder{
+                                                Image("Default_Product_Images")
+                                                    .resizable()
+                                                    .cornerRadius(20)
+                                                    .padding([.horizontal, .top], 7)
+                                                    .frame(width: 100, height: 100)
+                                            }
+                                            .cacheMemoryOnly()
+                                            .resizable()
+                                            .scaledToFit()
+                                            .cornerRadius(10)
+                                            .padding([.horizontal, .top], 7)
+                                            .frame(width: 100, height: 100)
+                                        
+                                        HStack{
+                                            Text(item.name ?? "")
+                                                .foregroundColor(.black)
+                                                .font(.system(size: 15))
+                                                .minimumScaleFactor(0.5)
+                                            Text("\(item.price ?? "" ) L.E" )
+                                                .foregroundColor(.black)
+                                                .font(.system(size: 12))
+                                        }.padding(.bottom , 5)
+                                        item.description?
+                                            .applyHTMLTags()
+                                            .lineLimit(2)
+                                            .foregroundColor(.gray.opacity(100))
                                             .font(.system(size: 12))
-                                    }.padding(.bottom , 5)
-                                    item.description?
-                                        .applyHTMLTags()
-                                        .lineLimit(2)
-                                        .foregroundColor(.gray.opacity(100))
-                                        .font(.system(size: 12))
-                                        .multilineTextAlignment(.leading)
-                                 
-                                    
+                                            .multilineTextAlignment(.leading)
+                                        
+                                        
+                                    }
+                                    .frame(height: 200)
+                                    .padding()
+                                    .background(Color.gray.opacity(0.10))
+                                    .cornerRadius(20)
                                 }
-                                .frame(height: 200)
-                                .padding()
-                                .background(Color.gray.opacity(0.10))
-                                .cornerRadius(20)
                             }
                         }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                 }
-                
             }
             else{
                 //if first time and no data stored in DB
@@ -85,7 +86,7 @@ struct HomeScreenView: View {
                     // if any data changed from api and not handeled in the model
                     LottieView(filename: "SomeThingWentWrong" , loopMode: .loop)
                     
-                }else if UserDefaults.standard.bool(forKey: "isFirstTime") == true {
+                }else if UserDefaults.standard.bool(forKey: "isEnterAppBefore") == true {
                     // user if fisrt time enter the app and not internet connection available
                     LottieView(filename: "noInternetConnection" , loopMode: .loop)
                 }
@@ -97,8 +98,9 @@ struct HomeScreenView: View {
             }
             
         }.onAppear{
-            if UserDefaults.standard.bool(forKey: "isFirstTime") == true  {
-                UserDefaults.standard.set(true, forKey: "isFirstTime")
+            print(UserDefaults.standard.bool(forKey: "isEnterAppBefore"))
+            if UserDefaults.standard.bool(forKey: "isEnterAppBefore") == false  {
+                UserDefaults.standard.set(true, forKey: "isEnterAppBefore")
             }
          
         }
