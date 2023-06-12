@@ -17,9 +17,16 @@ class GetProductUseCase   {
         self.baseRepository = baseRepository
     }
     
-    func getData(completionHandler: @escaping ([Product]) -> Void) {
+    func getData(completionHandler: @escaping (Result<[Product]?, String>) -> Void) {
         baseRepository.fetchProducts { products in
-            completionHandler(products)
+            
+            switch products {
+            case .success(let products):
+                print("GetProductUseCase = \(products)")
+                completionHandler(.success(products))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
         }
     }
     

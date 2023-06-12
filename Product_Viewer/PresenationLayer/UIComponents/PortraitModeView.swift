@@ -18,7 +18,7 @@ struct PortraitModeView: View {
                 .font(.system(size: 20))
                 .minimumScaleFactor(0.5)
             Spacer()
-            KFImage.url(URL(string :  product.imageURL ?? "" ))
+            KFImage.url(URL(string :  product.imageURL?.description ?? "" ))
                 .placeholder{
                         Image("Default_Product_Images")
                             .resizable()
@@ -50,6 +50,6 @@ struct PortraitModeView: View {
 
 struct PortraitModeView_Previews: PreviewProvider {
     static var previews: some View {
-        PortraitModeView(product: Product(id: "", name: "", description: "", price: "", imageURL: ""))
+        PortraitModeView(product: Product(id: "", name: "", description: "", price: "", imageURL: "" ))
     }
 }

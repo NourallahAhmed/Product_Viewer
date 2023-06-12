@@ -8,7 +8,10 @@
 import Foundation
 
 import Network
-
+enum Result<T, U> {
+    case success(T)
+    case failure(U)
+}
 class Repository : BaseRepository {
     
     var localDataSource : getFromLocalProtocol
@@ -22,24 +25,32 @@ class Repository : BaseRepository {
         self.remoteDataSource = remoteDataSource
     }
     
-    func fetchProducts(completionHandeler :  @escaping ([Product]) -> Void) {
+    func fetchProducts(completionHandeler :  @escaping (Result<[Product]?, String>) -> Void) {
         monitor.pathUpdateHandler = { [weak self] pathUpdateHandler  in
             if pathUpdateHandler.status == .satisfied {
                 // if internetConnectionEnabled fetch from remote
                 self?.remoteDataSource.fetchAllProducts(completion: { result in
-                    let result = try? result.get()
-                    let remoteProducts = result?.map{$0.product}
+                    
+                    
+                    
+                    switch result {
+                    case .success(let productViewer):
+                        let remoteProducts = productViewer?.map{$0.product}
+                        completionHandeler(.success(remoteProducts))
 
-                    completionHandeler(remoteProducts ?? [])
-
+                    case .failure(let error):
+                        completionHandeler(.failure(error.localizedDescription))
+        
+                    }
+                  
+                    
                 })
             }else{
                 // else locally
                 self?.localDataSource.getAllProducts { products in
                     
                     let localProducts = products.map{$0.toProducts()}
-                    print("localProducts = \(localProducts)")
-                    completionHandeler(localProducts ?? [])
+                    completionHandeler(.success(localProducts ))
                 }
             }
             

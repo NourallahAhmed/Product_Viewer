@@ -11,15 +11,7 @@ struct PersistenceController {
     static let shared = PersistenceController()
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+
         return result
     }()
 
@@ -27,9 +19,9 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Product_Viewer")
-        if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        }
+//        if inMemory {
+//            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+//        }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -63,19 +55,15 @@ struct PersistenceController {
     func saveData(products : [ProductViewer]){
         let viewContext = PersistenceController.preview.container.viewContext
       
-        for productViewer in products{
-            print("products = \(productViewer.product.id)")
+        for productViewer in products {
             let newItem = LocalProducts(context: viewContext)
-            newItem.id = productViewer.product.id ?? ""
+            newItem.productID = productViewer.product.id ?? ""
             newItem.name = productViewer.product.name ?? ""
             newItem.image_URL = productViewer.product.imageURL ?? ""
             newItem.discriptions = productViewer.product.description ?? ""
             newItem.price = productViewer.product.price ?? ""
-        
-            
             do {
                 try viewContext.save()
-                print("Saved")
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -87,6 +75,8 @@ struct PersistenceController {
         }
         
     }
+    
+    
     func clearLocalData(){
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LocalProducts")
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)

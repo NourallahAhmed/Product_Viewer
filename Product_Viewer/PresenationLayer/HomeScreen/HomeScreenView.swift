@@ -31,7 +31,7 @@ struct HomeScreenView: View {
                         ForEach(viewModel.products ) { item in
                             NavigationLink(destination: DetailsScreenView(product: item)) {
                                 VStack{
-                                    KFImage.url(URL(string : item.imageURL ?? "" ))
+                                    KFImage.url(URL(string : item.imageURL?.description ?? "" ))
                                         .placeholder{
                                             Image("Default_Product_Images")
                                                 .resizable()
@@ -49,8 +49,6 @@ struct HomeScreenView: View {
                                     HStack{
                                         Text(item.name ?? "")
                                             .foregroundColor(.black)
-                                        //                                            .bold()
-                                        //                                            .lineLimit(1)
                                             .font(.system(size: 15))
                                             .minimumScaleFactor(0.5)
                                         Text("\(item.price ?? "" ) L.E" )
@@ -63,12 +61,7 @@ struct HomeScreenView: View {
                                         .foregroundColor(.gray.opacity(100))
                                         .font(.system(size: 12))
                                         .multilineTextAlignment(.leading)
-                                    //                            Text(item.product.description ?? "")
-                                    //                                    .lineLimit(2)
-                                    //                                    .foregroundColor(.gray.opacity(100))
-                                    //                                    .font(.system(size: 12))
-                                    //                                    .multilineTextAlignment(.leading)
-                                    //                            Spacer()
+                                 
                                     
                                 }
                                 .frame(height: 200)
@@ -87,12 +80,27 @@ struct HomeScreenView: View {
                 if viewModel.loading {
                     LottieView(filename: "Loading" , loopMode: .loop)
                     
-                }else{
+                }else if viewModel.error == ErrorMessages.genericError {
+                    
+                    // if any data changed from api and not handeled in the model
+                    LottieView(filename: "SomeThingWentWrong" , loopMode: .loop)
+                    
+                }else if UserDefaults.standard.bool(forKey: "isFirstTime") == true {
+                    // user if fisrt time enter the app and not internet connection available
+                    LottieView(filename: "noInternetConnection" , loopMode: .loop)
+                }
+                else{
+                    // no data stored in DB
                     LottieView(filename: "noData" , loopMode: .loop)
                 }
                 
             }
             
+        }.onAppear{
+            if UserDefaults.standard.bool(forKey: "isFirstTime") == true  {
+                UserDefaults.standard.set(true, forKey: "isFirstTime")
+            }
+         
         }
         
     }

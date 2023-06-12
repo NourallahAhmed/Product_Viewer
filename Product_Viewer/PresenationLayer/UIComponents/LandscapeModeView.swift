@@ -21,7 +21,7 @@ struct LandscapeModeView: View {
                         .minimumScaleFactor(0.5)
                         .frame(alignment: .leading)
                     Spacer()
-                    KFImage.url(URL(string : product.imageURL ?? "" ))
+                    KFImage.url(URL(string : product.imageURL?.description ?? "" ))
                         .placeholder{
                             Image("Default_Product_Images")
                                 .resizable()

@@ -39,6 +39,6 @@ struct DetailsScreenView: View {
 
 struct DetailsScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsScreenView(product: Product(id: "", name: "", description: "", price: "", imageURL: ""))
+        DetailsScreenView(product: Product(id: "", name: "", description: "", price: "", imageURL: "" ))
     }
 }

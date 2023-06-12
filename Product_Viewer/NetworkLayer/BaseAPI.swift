@@ -31,8 +31,8 @@ class BaseAPI<T: TargetType> {
 
                     guard let response = try? response.result.get() else {
 
-                        
                         let error = NSError(domain: target.baseURL, code: 0, userInfo: [NSLocalizedDescriptionKey: ErrorMessages.genericError])
+                        
                         completion(.failure(error))
                         return
                     }

@@ -16,7 +16,6 @@ struct ProductViewer: Codable , Identifiable , Hashable , Equatable{
     let productMerchants: [ProductMerchantElement]
 
     enum CodingKeys: String, CodingKey {
-//        case id
         case product = "Product"
         case productMerchants = "ProductMerchants"
     }
